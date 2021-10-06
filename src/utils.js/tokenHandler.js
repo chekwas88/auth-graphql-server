@@ -1,13 +1,9 @@
-import jwt from 'jsonwebtoken';
-import dotenv from 'dotenv';
-
-dotenv.config();
+import jwt from "jsonwebtoken";
 
 export const verifyToken = (token) => {
-  
   try {
-    return jwt.verify(token, process.env.SECRET_KEY)
+    return jwt.verify(token, process.env.SECRET_KEY);
   } catch (error) {
     return false;
   }
-}
+};

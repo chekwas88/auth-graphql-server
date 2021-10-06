@@ -1,81 +1,60 @@
-const { gql } = require('apollo-server')
+const { gql } = require("apollo-server");
 
 /**
  * Type Definitions for the Schema using the SDL.
  */
 const typeDefs = gql`
-    type User {
-        id: ID!
-        name: String!
-        address: String
-        phone: String
-        photo: String
-        password: String!
-        securityQuestion: String!
-        securityAnswer: String!
-        email: String!
-        DoB: String
+  type Query {
+    profile: User
+  }
+  type Mutation {
+    signUp(input: signUpInput): AuthResponse
+    login(input: loginInput): AuthResponse
+    updateProfile(input: updateProfileInput): updateResponse
+  }
 
+  type User {
+    id: ID
+    name: String
+    address: String
+    phone: String
+    photo: String
+    email: String
+  }
+  type updateResponse {
+    message: String
+  }
 
-    }
-    input signUpInput {
-        name: String!
-        address: String!
-        phone: String!
-        photo: String
-        securityQuestion: String!
-        securityAnswer: String!
-        password: String!
-        email: String!
-        DoB: String!
-    }
+  type AuthResponse {
+    id: ID!
+    token: String!
+    email: String!
+    name: String
+  }
 
-    input updateProfileInput {
-        name: String
-        address: String
-        phone: String
-        photo: String
-        securityQuestion: String
-        securityAnswer: String
-        DoB: String
-    }
+  ### Inputs
+  input signUpInput {
+    name: String!
+    address: String!
+    phone: String!
+    photo: String
+    securityQuestion: String!
+    securityAnswer: String!
+    password: String!
+    email: String!
+  }
 
-    input loginInput {
-        email: String!
-        password: String!
-    }
-   
-    type Query {
-        profile: ProfileResponse
-        
-    }
-    type Mutation {
-        signUp(input: signUpInput): AuthResponse
-        login(input: loginInput): AuthResponse
-        updateProfile(input: updateProfileInput): ProfileResponse!
-    }
+  input updateProfileInput {
+    name: String
+    address: String
+    phone: String
+    photo: String
+  }
 
-    type ProfileResponse {
-        id: ID
-        name: String
-        address: String
-        phone: String
-        photo: String
-        securityQuestion: String
-        securityAnswer: String
-        email: String
-        DoB: String
-
-    }
-    type AuthResponse {
-        id: ID!
-        token: String!
-        email: String!
-        name: String
-
-    }
-
-
+  input loginInput {
+    email: String!
+    password: String!
+  }
 `;
 
-module.exports = typeDefs
+module.exports = typeDefs;
