@@ -21,4 +21,4 @@ This project requires you to have **Node** and  **Git** installed in your system
 - express
 
 
-* You can view the live app at https://jetcake-gql-server.herokuapp.com/
+* You can view the live app at https://auth-gql-server-88.herokuapp.com/
